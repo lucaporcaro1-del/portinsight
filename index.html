@@ -427,13 +427,13 @@ footer{
 <div id="landing" class="landing-shell">
   <div class="landing-top">
     <div class="brandmark"><span class="dot"></span>Port Insight Dashboard - Dati di traffico dei principali porti italiani</div>
-    <div class="source-tag" style="color:var(--ink-soft);text-align:right;">Fonte: Bollettini statistici AdSP 2021–2025 · a cura di Luca Porcaro, Business Analyst presso la MAR.TE. S.c.ar.l<br><a href="#" onclick="goContacts();return false;">Contatti</a></div>
+    <div class="source-tag" style="color:var(--ink-soft);text-align:right;">A cura di Luca Porcaro, Business Analyst presso la MAR.TE. S.c.ar.l<br><a href="#" onclick="goContacts();return false;">Contatti</a></div>
   </div>
   <div class="landing">
     <div class="landing-card">
       <div class="landing-eyebrow">Dashboard statistica portuale</div>
       <h2>Il traffico marittimo<br>italiano, porto per porto.</h2>
-      <p>Merci, container, passeggeri, navi e veicoli movimentati nei principali scali italiani, dal 2021 al 2025. Confronta i porti o esplora il dettaglio di uno scalo.</p>
+      <p>Merci, container, passeggeri e veicoli movimentati nei principali scali italiani, dal 2021 al 2025. Confronta i porti o esplora il dettaglio di uno scalo.</p>
       <button class="enter-btn" onclick="enterDashboard()">Apri la Port Insight Dashboard →</button>
       <div class="landing-stats">
         <div class="landing-stat"><div class="num" id="stat-ports">—</div><div class="lbl">Porti monitorati</div></div>
@@ -452,7 +452,6 @@ footer{
   </div>
   <div class="landing">
     <div class="landing-card">
-      <div class="landing-eyebrow">Contatti</div>
       <h2>Contatti</h2>
       <p>A cura del Dott. L. Porcaro<br>l.porcaro@martelogistics.com</p>
     </div>
@@ -466,9 +465,9 @@ footer{
     <div>
       <div class="eyebrow">Dati di Traffico — Sistema Portuale Italiano</div>
       <h1 id="dash-title">Confronto tra i porti italiani</h1>
-      <p class="subtitle" id="dash-subtitle">Tonnellate di merce, container, passeggeri e movimenti nave per scalo.</p>
+      <p class="subtitle" id="dash-subtitle">Tonnellate di merce, container e passeggeri per scalo.</p>
     </div>
-    <div class="source-tag">Fonte: Bollettini statistici AdSP 2021–2025<br>A cura di Luca Porcaro, Business Analyst presso la MAR.TE. S.c.ar.l<br><a href="#" onclick="goLanding();return false;">← torna alla pagina iniziale</a> · <a href="#" onclick="goContacts();return false;">Contatti</a></div>
+    <div class="source-tag">A cura di Luca Porcaro, Business Analyst presso la MAR.TE. S.c.ar.l<br><a href="#" onclick="goLanding();return false;">← torna alla pagina iniziale</a> · <a href="#" onclick="goContacts();return false;">Contatti</a></div>
   </div>
 </header>
 
@@ -517,11 +516,11 @@ footer{
     <section class="block">
       <div class="block-head">
         <div class="block-title">Classifica porti</div>
-        <div class="block-note">Clicca un indicatore per cambiare la classifica</div>
+        <div class="block-note">Prime 30 posizioni · clicca un indicatore per cambiare la classifica</div>
       </div>
       <div class="tabs" id="rank-tabs"></div>
       <div class="panel">
-        <div class="chart-wrap tall"><canvas id="chart-rank"></canvas></div>
+        <div class="chart-wrap tall" style="height:640px;"><canvas id="chart-rank"></canvas></div>
       </div>
     </section>
 
@@ -529,7 +528,7 @@ footer{
       <div class="panel-grid">
         <div class="panel">
           <h3>Andamento del traffico merci totale</h3>
-          <div class="panel-sub">Top 8 porti per tonnellate movimentate, 2021–2025</div>
+          <div class="panel-sub">Top 10 porti per tonnellate movimentate, 2021–2025</div>
           <div class="chart-wrap"><canvas id="chart-trend-system"></canvas></div>
         </div>
         <div class="panel">
@@ -780,7 +779,7 @@ function pct(a,b){
   return ((a-b)/b*100);
 }
 
-const PALETTE = ['#1B7A8C','#0B2545','#D9A441','#5EA9B8','#B8473C','#7A6BAE','#2E7D5B','#A8763E'];
+const PALETTE = ['#1B7A8C','#0B2545','#D9A441','#5EA9B8','#B8473C','#7A6BAE','#2E7D5B','#A8763E','#C2588A','#4C6B8A'];
 
 // ---------- AdSP grouping ----------
 const ADSP_GROUPS = {"AdSP del Mar Ligure Occidentale": ["Genova", "Savona - Vado Ligure"], "AdSP del Mar Ligure Orientale": ["La Spezia", "Marina di Carrara"], "AdSP del Mar Tirreno Settentrionale": ["Livorno", "Piombino"], "AdSP del Mar Tirreno Centro-Settentrionale": ["Civitavecchia", "Fiumicino", "Gaeta"], "AdSP del Mar Tirreno Centrale": ["Napoli", "Salerno", "Castellammare di Stabia"], "AdSP dei Mari Tirreno Meridionale e Ionio": ["Gioia Tauro", "Crotone", "Corigliano Calabro", "Vibo Valentia"], "AdSP dello Stretto": ["Messina - Tremestieri", "Milazzo", "Villa San Giovanni", "Reggio Calabria"], "AdSP del Mar Ionio": ["Taranto"], "AdSP del Mare Adriatico Meridionale": ["Bari", "Brindisi", "Manfredonia", "Barletta", "Monopoli", "Termoli"], "AdSP del Mare Adriatico Centrale": ["Ancona - Falconara Marittima", "Vasto", "Pesaro", "Ortona"], "AdSP del Mare Adriatico Centro-Settentrionale": ["Ravenna"], "AdSP del Mare Adriatico Settentrionale": ["Venezia", "Chioggia"], "AdSP del Mare Adriatico Orientale": ["Trieste", "Monfalcone"], "AdSP del Mare di Sicilia Occidentale": ["Palermo", "Termini Imerese", "Porto Empedocle", "Trapani", "Gela", "Licata"], "AdSP del Mare di Sicilia Orientale": ["Catania", "Augusta", "Pozzallo"], "AdSP del Mare di Sardegna": ["Cagliari", "Olbia", "Porto Torres", "Golfo Aranci", "Oristano", "Portoscuso", "Santa Teresa di Gallura", "Arbatax"]};
@@ -853,7 +852,7 @@ function setMode(m){
     detail: portLabel(selPort.value)
   };
   const subtitles = {
-    compare: 'Tonnellate di merce, container, passeggeri e movimenti nave per scalo.',
+    compare: 'Tonnellate di merce, container e passeggeri per scalo.',
     adsp: 'Traffico aggregato per le 16 Autorità di Sistema Portuale italiane.',
     compare2: 'Confronto diretto tra due scali italiani su tutti gli indicatori.',
     detail: 'Dettaglio del traffico portuale per lo scalo selezionato.'
@@ -931,7 +930,7 @@ function renderCompare(){
     tabsWrap.appendChild(b);
   });
 
-  const ranked = PORTS.map(p=>({p, v:val(p,y,activeRank)})).sort((a,b)=>b.v-a.v).slice(0,15);
+  const ranked = PORTS.map(p=>({p, v:val(p,y,activeRank)})).sort((a,b)=>b.v-a.v).slice(0,30);
   setChart('chart-rank', {
     type:'bar',
     data:{
@@ -955,7 +954,7 @@ function renderCompare(){
   });
 
   // trend top 8 by current year A1
-  const top8 = PORTS.map(p=>({p, v:val(p,y,'A1')})).sort((a,b)=>b.v-a.v).slice(0,8).map(r=>r.p);
+  const top8 = PORTS.map(p=>({p, v:val(p,y,'A1')})).sort((a,b)=>b.v-a.v).slice(0,10).map(r=>r.p);
   setChart('chart-trend-system', {
     type:'line',
     data:{
