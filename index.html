@@ -1029,12 +1029,14 @@ function renderDetail(){
 
   const cardsDef = [
     {label:'Traffico merci totale', code:'A1', unit:'t'},
+    {label:'Rinfuse liquide', code:'A2', unit:'t'},
+    {label:'Rinfuse solide', code:'A3', unit:'t'},
     {label:'Container movimentati', code:'B4', unit:'TEU'},
+    {label:'Unità Ro-Ro', code:'B51', unit:''},
     {label:'Pax totale', code:'BTOT', unit:''},
     {label:'Pax locali (≤20 NM)', code:'B21', unit:''},
     {label:'Pax traghetto (>20 NM)', code:'B22', unit:''},
     {label:'Passeggeri crociera', code:'B3', unit:''},
-    {label:'Unità Ro-Ro', code:'B51', unit:''},
   ];
   const wrap = document.getElementById('kpi-detail');
   wrap.innerHTML='';
