@@ -540,7 +540,7 @@ footer{
     <section class="block">
       <div class="block-head">
         <div class="block-title" data-i18n="classificaPorti">Classifica porti</div>
-        <div class="block-note" data-i18n="top30note">Prime 30 posizioni · clicca un indicatore per cambiare la classifica</div>
+        <div class="block-note" data-i18n="top30note">Prime 25 posizioni · clicca un indicatore per cambiare la classifica</div>
       </div>
       <div class="tabs" id="rank-tabs"></div>
       <div class="panel">
@@ -870,7 +870,7 @@ const I18N = {
     quadroGenerale: 'Sistema portuale italiano — quadro generale',
     sommaSistema: 'Somma sistema portuale nazionale',
     classificaPorti: 'Classifica porti',
-    top30note: 'Prime 30 posizioni · clicca un indicatore per cambiare la classifica',
+    top30note: 'Prime 25 posizioni · clicca un indicatore per cambiare la classifica',
     andamentoMerciTotali: 'Andamento del traffico merci totale',
     top10note: 'Top 10 porti per tonnellate movimentate, 2016–2025',
     composizioneNazionale: 'Composizione del traffico nazionale',
@@ -942,7 +942,7 @@ const I18N = {
     quadroGenerale: 'Italian port system — overview',
     sommaSistema: 'National port system total',
     classificaPorti: 'Port ranking',
-    top30note: 'Top 30 positions · click an indicator to change the ranking',
+    top30note: 'Top 25 positions · click an indicator to change the ranking',
     andamentoMerciTotali: 'Total cargo traffic trend',
     top10note: 'Top 10 ports by tonnes handled, 2016–2025',
     composizioneNazionale: 'National traffic composition',
@@ -1205,7 +1205,7 @@ function renderCompare(){
     tabsWrap.appendChild(b);
   });
 
-  const ranked = PORTS.map(p=>({p, v:val(p,y,activeRank)})).sort((a,b)=>b.v-a.v).slice(0,30);
+  const ranked = PORTS.map(p=>({p, v:val(p,y,activeRank)})).sort((a,b)=>b.v-a.v).slice(0,25);
   setChart('chart-rank', {
     type:'bar',
     data:{
