@@ -1547,15 +1547,20 @@ function renderCompare2(){
   const cardsDef = [
     {label:L('Traffico merci totale'), code:'A1', unit:'t'},
     {label:L('Container movimentati'), code:'B4', unit:'TEU'},
+    {label:L('Unità Ro-Ro'), code:'B51', unit:''},
     {label:L('Pax totale'), code:'BTOT', unit:''},
     {label:L('Pax locali (≤20 NM)'), code:'B21', unit:''},
     {label:L('Pax traghetto (>20 NM)'), code:'B22', unit:''},
     {label:L('Passeggeri crociera'), code:'B3', unit:''},
-    {label:L('Unità Ro-Ro'), code:'B51', unit:''},
   ];
   const wrap = document.getElementById('kpi-compare2');
   wrap.innerHTML='';
-  cardsDef.forEach(c=>{
+  cardsDef.forEach((c,idx)=>{
+    if(idx===3){
+      const spacer = document.createElement('div');
+      spacer.style.cssText = 'grid-column:1/-1;height:0;margin:0;padding:0;';
+      wrap.appendChild(spacer);
+    }
     const va = val(pa,y,c.code), vb = val(pb,y,c.code);
     const d = pct(va, vb);
     const el = document.createElement('div');
