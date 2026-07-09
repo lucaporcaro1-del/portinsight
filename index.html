@@ -588,6 +588,7 @@ footer{
         <div class="block-title" data-i18n="datiAggAdsp">Dati aggregati per Autorità di Sistema Portuale</div>
         <div class="block-note" id="adsp-note"></div>
       </div>
+      <div class="kpi-grid" id="kpi-adsp"></div>
     </section>
 
     <section class="block">
@@ -1438,7 +1439,39 @@ function renderDetail(){
 // ---------- ADSP VIEW ----------
 function renderAdsp(){
   const y = selYear.value;
+  const yPrev = String(parseInt(y)-1);
   document.getElementById('adsp-note').textContent = lang==='en' ? `Year ${y} · 16 Port System Authorities · ${PORTS.length} ports` : `Anno ${y} · 16 Autorità di Sistema Portuale · ${PORTS.length} porti`;
+
+  const sysTotal = (code)=> PORTS.reduce((s,p)=>s+val(p,y,code),0);
+  const sysTotalPrev = (code)=> PORTS.reduce((s,p)=>s+val(p,yPrev,code),0);
+  const cards = [
+    {label:L('Traffico merci totale'), code:'A1', unit:'t'},
+    {label:L('Container movimentati'), code:'B4', unit:'TEU'},
+    {label:L('Unità Ro-Ro'), code:'B51', unit:''},
+    {label:L('Pax totale'), code:'BTOT', unit:''},
+    {label:L('Pax locali (≤20 NM)'), code:'B21', unit:''},
+    {label:L('Pax traghetto (>20 NM)'), code:'B22', unit:''},
+    {label:L('Passeggeri crociera'), code:'B3', unit:''},
+  ];
+  const kpiWrap = document.getElementById('kpi-adsp');
+  kpiWrap.innerHTML='';
+  cards.forEach((c,idx)=>{
+    if(idx===3){
+      const spacer = document.createElement('div');
+      spacer.style.cssText = 'grid-column:1/-1;height:0;margin:0;padding:0;';
+      kpiWrap.appendChild(spacer);
+    }
+    const cur = sysTotal(c.code), prev = sysTotalPrev(c.code);
+    const d = pct(cur, prev);
+    const el = document.createElement('div');
+    el.className='kpi-card';
+    el.innerHTML = `
+      <div class="kpi-label">${c.label}</div>
+      <div class="kpi-value">${fmt(cur)}<span class="kpi-unit">${c.unit}</span></div>
+      ${d!==null ? `<div class="kpi-delta ${d>=0?'up':'down'}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(1)}% vs ${yPrev}</div>` : ''}
+      <div class="kpi-sub">${t('sommaSistema')}</div>`;
+    kpiWrap.appendChild(el);
+  });
 
   const rankKpis = [
     {code:'A1', label:L('Merci totali (t)')},
